@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Reflection.Metadata;
 using FluentAssertions;
 using Sibala;
 
@@ -20,8 +18,8 @@ class ParserTests
                 Dices = new List<Dice>
                 {
                     new Dice{ Output = "5", Value = 5 },
-                    new Dice{ Output = "5", Value = 5 },
                     new Dice{ Output = "3", Value = 3 },
+                    new Dice{ Output = "5", Value = 5 },
                     new Dice{ Output = "4", Value = 4 }
                 }
             },
@@ -31,8 +29,8 @@ class ParserTests
                 Dices = new List<Dice>
                 {
                     new Dice{ Output = "2", Value = 2 },
-                    new Dice{ Output = "2", Value = 2 },
                     new Dice{ Output = "6", Value = 6 },
+                    new Dice{ Output = "2", Value = 2 },
                     new Dice{ Output = "3", Value = 3 }
                 }
             }
