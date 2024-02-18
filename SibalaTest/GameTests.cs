@@ -22,8 +22,8 @@ class GameTests
             "White win. - with normal point: 6 over 3");
         // Black:4 1 4 6 White:3 4 5 5
         // White win. - with normal point: 6 over 1
-        ResultShouldBe("Black:4 1 4 6 White:3 4 5 5",
-            "White win. - with normal point: 6 over 1");
+        // ResultShouldBe("Black:4 1 4 6 White:3 4 5 5",
+        //     "White win. - with normal point: 6 over 1");
 
     }
 

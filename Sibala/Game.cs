@@ -8,10 +8,15 @@ public class Game
         var players = new Parser().Parse(input);
 
         var winnerPlayer = players[1].Name;
-        var groupBy = players[1].Dices
-                                    .OrderByDescending(x => x.Value)
-                                    .GroupBy(x => x.Value).ToList();
-        var winnerOutput = $"{groupBy[0].First().Output} over {groupBy[1].First().Output}";
+
+        // group dices and select count < 2 value
+        var nomalPoint = players[1].Dices
+                                .GroupBy(x => x.Value)
+                                .Where(x => x.Count() < 2)
+                                .Select(x => x.First())
+                                .OrderByDescending(x => x.Value).ToList();
+
+        var winnerOutput = $"{nomalPoint[0].Output} over {nomalPoint[1].Output}";
 
         return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
     }
