@@ -6,11 +6,30 @@ namespace SibalaTest;
 [TestFixture]
 class GameTests
 {
+    private Game _game;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _game = new Game();
+    }
+
+
     [Test]
     public void Both_normal_Point()
     {
-        var game = new Game();
-        var result = game.Result("Black:5 3 5 4  White:2 6 2 3");
-        result.Should().Be("White win. - with normal point: 6 over 3");
+        ResultShouldBe("Black:5 3 5 4  White:2 6 2 3",
+            "White win. - with normal point: 6 over 3");
+        // Black:4 1 4 6 White:3 4 5 5
+        // White win. - with normal point: 6 over 1
+        ResultShouldBe("Black:4 1 4 6 White:3 4 5 5",
+            "White win. - with normal point: 6 over 1");
+
+    }
+
+    private void ResultShouldBe(string input, string expected)
+    {
+        var result = _game.Result(input);
+        result.Should().Be(expected);
     }
 }

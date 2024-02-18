@@ -8,10 +8,11 @@ public class Game
         var players = new Parser().Parse(input);
 
         var winnerPlayer = players[1].Name;
-        var groupBy = players[1].Dices.OrderByDescending(x => x.Value).ToList()
-            .GroupBy(x => x.Value).ToList();
+        var groupBy = players[1].Dices
+                                    .OrderByDescending(x => x.Value)
+                                    .GroupBy(x => x.Value).ToList();
         var winnerOutput = $"{groupBy[0].First().Output} over {groupBy[1].First().Output}";
 
         return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
     }
-}
+} 
