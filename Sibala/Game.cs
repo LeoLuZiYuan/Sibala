@@ -4,20 +4,36 @@ public class Game
 {
     public string Result(string input)
     {
-        // Black:5 3 5 4  White:2 6 2 3
         var players = new Parser().Parse(input);
 
-        var winnerPlayer = players[1].Name;
+        var nomalPoint1 = players[0].Dices
+            .GroupBy(x => x.Value)
+            .Where(x => x.Count() < 2)
+            .Select(x => x.First())
+            .OrderByDescending(x => x.Value).ToList();
+        var pointValue1 = nomalPoint1[0].Value + nomalPoint1[1].Value;
 
-        // group dices and select count < 2 value
-        var nomalPoint = players[1].Dices
+
+        var nomalPoint2 = players[1].Dices
                                 .GroupBy(x => x.Value)
                                 .Where(x => x.Count() < 2)
                                 .Select(x => x.First())
                                 .OrderByDescending(x => x.Value).ToList();
+        var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 
-        var winnerOutput = $"{nomalPoint[0].Output} over {nomalPoint[1].Output}";
+        string winnerPlayer;
+        string winnerOutput;
+        if (pointValue1 > pointValue2)
+        {
+            winnerPlayer = players[0].Name;
+            winnerOutput = $"{nomalPoint1[0].Output} over {nomalPoint1[1].Output}";
+        }
+        else
+        {
+            winnerPlayer = players[1].Name;
+            winnerOutput = $"{nomalPoint2[0].Output} over {nomalPoint2[1].Output}";
+        }
 
         return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
     }
-} 
+}

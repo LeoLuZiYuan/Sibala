@@ -20,10 +20,9 @@ class GameTests
     {
         ResultShouldBe("Black:5 3 5 4  White:2 6 2 3",
             "White win. - with normal point: 6 over 3");
-        // Black:4 1 4 6 White:3 4 5 5
-        // White win. - with normal point: 6 over 1
-        // ResultShouldBe("Black:4 1 4 6 White:3 4 5 5",
-        //     "White win. - with normal point: 6 over 1");
+
+        ResultShouldBe("Black:4 1 4 6  White:3 2 5 5",
+            "Black win. - with normal point: 6 over 1");
 
     }
 
