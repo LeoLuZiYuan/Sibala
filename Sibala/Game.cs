@@ -11,7 +11,6 @@ public class Game
         var nomalPoint1 = players[0].GetNormalPoint().ToList();
         var pointValue1 = nomalPoint1[0].Value + nomalPoint1[1].Value;
 
-
         var nomalPoint2 = players[1].GetNormalPoint().ToList();
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 

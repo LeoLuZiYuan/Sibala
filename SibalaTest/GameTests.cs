@@ -26,6 +26,13 @@ class GameTests
 
     }
 
+    [Test]
+    public void Both_normal_Point_Tie()
+    {
+        ResultShouldBe("Black: 3 6 5 5  White: 4 4 3 6",
+                       "Tie.");
+    }
+
     private void ResultShouldBe(string input, string expected)
     {
         var result = _game.Result(input);
