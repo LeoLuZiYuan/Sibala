@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace Sibala;
 
 public class Game
@@ -6,19 +8,11 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var nomalPoint1 = players[0].Dices
-            .GroupBy(x => x.Value)
-            .Where(x => x.Count() < 2)
-            .Select(x => x.First())
-            .OrderByDescending(x => x.Value).ToList();
+        var nomalPoint1 = GetNormalPoint(players[0]).ToList();
         var pointValue1 = nomalPoint1[0].Value + nomalPoint1[1].Value;
 
 
-        var nomalPoint2 = players[1].Dices
-                                .GroupBy(x => x.Value)
-                                .Where(x => x.Count() < 2)
-                                .Select(x => x.First())
-                                .OrderByDescending(x => x.Value).ToList();
+        var nomalPoint2 = GetNormalPoint(players[1]).ToList();
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 
         string winnerPlayer;
@@ -35,5 +29,14 @@ public class Game
         }
 
         return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
+    }
+
+    private static IEnumerable<Dice> GetNormalPoint(Player player)
+    {
+        return player.Dices
+            .GroupBy(x => x.Value)
+            .Where(x => x.Count() == 1)
+            .Select(x => x.First())
+            .OrderByDescending(x => x.Value).ToList();
     }
 }
