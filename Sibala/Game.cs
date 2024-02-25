@@ -14,6 +14,11 @@ public class Game
         var nomalPoint2 = players[1].GetNormalPoint().ToList();
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 
+        if (pointValue1 == pointValue2)
+        {
+            return "Tie.";
+        }
+
         string winnerPlayer;
         string winnerOutput;
         if (pointValue1 > pointValue2)
