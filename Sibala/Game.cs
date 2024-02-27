@@ -14,24 +14,26 @@ public class Game
         var nomalPoint2 = players[1].GetNormalPoint().ToList();
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 
-        if (pointValue1 == pointValue2)
+        var compareResult = pointValue1 - pointValue2;
+        if (compareResult != 0)
         {
-            return "Tie.";
+            string winnerPlayer = null;
+            string winnerOutput = null;
+            if (compareResult > 0)
+            {
+                winnerPlayer = players[0].Name;
+                winnerOutput = $"{nomalPoint1[0].Output} over {nomalPoint1[1].Output}";
+            } 
+
+            if (compareResult < 0)
+            {
+                winnerPlayer = players[1].Name;
+                winnerOutput = $"{nomalPoint2[0].Output} over {nomalPoint2[1].Output}";
+            }
+
+            return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
         }
 
-        string winnerPlayer;
-        string winnerOutput;
-        if (pointValue1 > pointValue2)
-        {
-            winnerPlayer = players[0].Name;
-            winnerOutput = $"{nomalPoint1[0].Output} over {nomalPoint1[1].Output}";
-        }
-        else
-        {
-            winnerPlayer = players[1].Name;
-            winnerOutput = $"{nomalPoint2[0].Output} over {nomalPoint2[1].Output}";
-        }
-
-        return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
+        return "Tie.";
     }
 }
