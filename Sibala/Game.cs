@@ -8,17 +8,8 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var isAllOfKind = players[0].Dices.GroupBy(x => x.Value).Count() == 1;
-        Categroy categoryType1;
-        if (isAllOfKind)
-        {
-            categoryType1 = Categroy.AllOfKind;
-        }
-        else
-        {
-            categoryType1 = Categroy.NormalPoint;
-        }
-         
+        var categoryType1 = GetCategroyType(players[0]);
+
         if (categoryType1 == Categroy.AllOfKind)
         {
             var winnerPlayer = "Black";
@@ -38,6 +29,21 @@ public class Game
         }
 
         return "Tie.";
+    }
+
+    private static Categroy GetCategroyType(Player player)
+    {
+        var isAllOfKind = player
+                    .Dices
+                    .GroupBy(x => x.Value)
+                    .Where(x => x.Count() == 4);
+
+        if (isAllOfKind.Any())
+        {
+            return Categroy.AllOfKind;
+        }
+
+        return Categroy.NormalPoint;
     }
 }
 
