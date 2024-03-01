@@ -8,11 +8,9 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var nomalPoint1 = players[0].GetNormalPoint();
-        var nomalPoint2 = players[1].GetNormalPoint();
 
-        NormalPointCompare normalPointCompare = new();
-        var compareResult = normalPointCompare.Compare(nomalPoint1, nomalPoint2);
+        var normalPointCompare = new NormalPointCompare();
+        var compareResult = normalPointCompare.Compare(players[0], players[1]);
 
         if (compareResult != 0)
         {

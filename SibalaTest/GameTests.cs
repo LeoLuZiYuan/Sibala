@@ -38,7 +38,7 @@ class GameTests
     {
         // All of a kind win normal Point
         // Black: 5 5 5 5  White: 2 6 2 3
-        // Black win. -with all of a kind: 5
+        // Black win. - with all of a kind: 5
         ResultShouldBe("Black: 5 5 5 5  White: 2 6 2 3",
                        "Black win. - with all of a kind: 5");
     }

@@ -4,8 +4,11 @@ public class NormalPointCompare
 {
     public string WinnerOutput { get; private set; }
 
-    public int Compare(List<Dice> nomalPoint1, List<Dice> nomalPoint2)
+    public int Compare(Player player1, Player player2)
     {
+        var nomalPoint1 = player1.GetNormalPoint();
+        var nomalPoint2 = player2.GetNormalPoint();
+
         var pointValue1 = nomalPoint1[0].Value + nomalPoint1[1].Value;
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
 
