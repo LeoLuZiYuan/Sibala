@@ -9,8 +9,9 @@ public class Game
         var players = new Parser().Parse(input);
 
         var categoryType1 = GetCategroyType(players[0]);
+        var categoryType2 = GetCategroyType(players[1]);
 
-        if (categoryType1 == Categroy.AllOfKind)
+        if (categoryType1 > categoryType2) 
         {
             var winnerPlayer = "Black";
             var winnerCategory = "all of a kind";
