@@ -10,12 +10,12 @@ public class Game
 
         var categoryType1 = GetCategroyType(players[0]);
         var categoryType2 = GetCategroyType(players[1]);
-
+         
         if (categoryType1 > categoryType2) 
         {
-            var winnerPlayer = "Black";
+            var winnerPlayer = players[0].Name;
             var winnerCategory = "all of a kind";
-            var winnerOutput = "5";
+            var winnerOutput = "5" ;
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
 
@@ -32,7 +32,7 @@ public class Game
         return "Tie.";
     }
 
-    private static Categroy GetCategroyType(Player player)
+    private static CategroyType GetCategroyType(Player player)
     {
         var isAllOfKind = player
                     .Dices
@@ -41,14 +41,14 @@ public class Game
 
         if (isAllOfKind.Any())
         {
-            return Categroy.AllOfKind;
+            return CategroyType.AllOfKind;
         }
 
-        return Categroy.NormalPoint;
+        return CategroyType.NormalPoint;
     }
 }
 
-public enum Categroy
+public enum CategroyType
 {
     NormalPoint = 1,
     AllOfKind = 2,
