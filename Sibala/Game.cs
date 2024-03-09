@@ -14,8 +14,8 @@ public class Game
         if (category1.Type > category2.Type)
         {
             var winnerPlayer = players[0].Name;
-            var winnerCategory = "all of a kind";
-            var winnerOutput = "5";
+            var winnerCategory = category1.Name;
+            var winnerOutput = category1.WinnerOutput;
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
 
@@ -41,18 +41,18 @@ public class Game
 
         if (isAllOfKind.Any())
         {
-            // return CategroyType.AllOfKind;
-            return new Category { Type = CategroyType.AllOfKind };
+            return new Category { Type = CategroyType.AllOfKind, Name = "all of a kind", WinnerOutput = isAllOfKind.First().First().Output};
         }
 
-        // return CategroyType.NormalPoint;
-        return new Category { Type = CategroyType.NormalPoint };
+        return new Category { Type = CategroyType.NormalPoint, Name = "normal point" };
     }
 }
 
 internal class Category
 {
     public CategroyType Type { get; set; }
+    public string Name { get; set; }
+    public string WinnerOutput { get; set; }
 }
 
 public enum CategroyType
