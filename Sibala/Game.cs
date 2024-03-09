@@ -19,6 +19,13 @@ public class Game
             var winnerOutput = category1.WinnerOutput;
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
+        if (category1.Type < category2.Type)
+        {
+            var winnerPlayer = players[1].Name;
+            var winnerCategory = category2.Name;
+            var winnerOutput = category2.WinnerOutput;
+            return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+        }
 
         var normalPointCompare = new NormalPointCompare();
         var compareResult = normalPointCompare.Compare(players[0], players[1]);
