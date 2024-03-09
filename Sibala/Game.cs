@@ -1,3 +1,4 @@
+using Sibala.Categories;
 using Sibala.Compares;
 
 namespace Sibala;
@@ -8,8 +9,8 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var category1 = GetCategroy(players[0]);
-        var category2 = GetCategroy(players[1]);
+        var category1 = GetCategroy(players[0].Dices);
+        var category2 = GetCategroy(players[1].Dices);
 
         if (category1.Type > category2.Type)
         {
@@ -32,31 +33,17 @@ public class Game
         return "Tie.";
     }
 
-    private static Category GetCategroy(Player player)
+    private static Category GetCategroy(IEnumerable<Dice> Dices)
     {
-        var isAllOfKind = player
-                    .Dices
+        var isAllOfKind = Dices
                     .GroupBy(x => x.Value)
                     .Where(x => x.Count() == 4);
 
         if (isAllOfKind.Any())
         {
-            return new Category { Type = CategroyType.AllOfKind, Name = "all of a kind", WinnerOutput = isAllOfKind.First().First().Output};
+            return new Category { Type = CategroyType.AllOfKind, Name = "all of a kind", WinnerOutput = isAllOfKind.First().First().Output };
         }
 
         return new Category { Type = CategroyType.NormalPoint, Name = "normal point" };
     }
-}
-
-internal class Category
-{
-    public CategroyType Type { get; set; }
-    public string Name { get; set; }
-    public string WinnerOutput { get; set; }
-}
-
-public enum CategroyType
-{
-    NormalPoint = 1,
-    AllOfKind = 2,
 }
