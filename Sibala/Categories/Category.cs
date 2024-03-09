@@ -1,8 +1,9 @@
 namespace Sibala.Categories;
 
-internal class Category
+internal abstract class Category
 {
     public string WinnerOutput { get; set; }
-    public CategroyType Type { get; set; }
-    public string Name { get; set; }
+    public abstract CategroyType Type { get; }
+
+    public abstract string Name { get;}
 }

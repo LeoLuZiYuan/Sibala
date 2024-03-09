@@ -41,9 +41,9 @@ public class Game
 
         if (isAllOfKind.Any())
         {
-            return new Category { Type = CategroyType.AllOfKind, Name = "all of a kind", WinnerOutput = isAllOfKind.First().First().Output };
+            return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
         }
 
-        return new Category { Type = CategroyType.NormalPoint, Name = "normal point" };
+        return new NormalPoint { };
     }
 }
