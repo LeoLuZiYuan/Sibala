@@ -32,15 +32,16 @@ class GameTests
         ResultShouldBe("Black: 3 6 5 5  White: 4 4 3 6",
                        "Tie.");
     }
-    
+
     [Test]
     public void AllOfKind_Win_Others()
     {
         // All of a kind win normal Point
-        // Black: 5 5 5 5  White: 2 6 2 3
-        // Black win. - with all of a kind: 5
         ResultShouldBe("Black: 5 5 5 5  White: 2 6 2 3",
-                       "Black win. - with all of a kind: 5");
+            "Black win. - with all of a kind: 5");
+
+        ResultShouldBe("Black: 2 6 2 3  White: 5 5 5 5",
+            "White win. - with all of a kind: 5");
     }
 
 
