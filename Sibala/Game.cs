@@ -8,14 +8,14 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var categoryType1 = GetCategroyType(players[0]);
-        var categoryType2 = GetCategroyType(players[1]);
-         
-        if (categoryType1 > categoryType2) 
+        var category1 = GetCategroy(players[0]);
+        var category2 = GetCategroy(players[1]);
+
+        if (category1.Type > category2.Type)
         {
             var winnerPlayer = players[0].Name;
             var winnerCategory = "all of a kind";
-            var winnerOutput = "5" ;
+            var winnerOutput = "5";
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
 
@@ -32,7 +32,7 @@ public class Game
         return "Tie.";
     }
 
-    private static CategroyType GetCategroyType(Player player)
+    private static Category GetCategroy(Player player)
     {
         var isAllOfKind = player
                     .Dices
@@ -41,11 +41,18 @@ public class Game
 
         if (isAllOfKind.Any())
         {
-            return CategroyType.AllOfKind;
+            // return CategroyType.AllOfKind;
+            return new Category { Type = CategroyType.AllOfKind };
         }
 
-        return CategroyType.NormalPoint;
+        // return CategroyType.NormalPoint;
+        return new Category { Type = CategroyType.NormalPoint };
     }
+}
+
+internal class Category
+{
+    public CategroyType Type { get; set; }
 }
 
 public enum CategroyType
