@@ -22,14 +22,12 @@ public class Game
                 winnerPlayer = players[0].Name;
                 winnerCategory = category1.Name;
                 winnerOutput = category1.WinnerOutput;
-                // return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
             }
             else
             {
                 winnerPlayer = players[1].Name;
                 winnerCategory = category2.Name;
                 winnerOutput = category2.WinnerOutput;
-                // return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
             }
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
@@ -42,7 +40,8 @@ public class Game
             {
                 var winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
                 string winnerOutput = normalPointCompare.WinnerOutput;
-                return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
+                var winnerCategory = normalPointCompare.CategoryName;
+                return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
             }
         }
 

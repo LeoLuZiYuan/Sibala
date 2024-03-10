@@ -3,6 +3,7 @@ namespace Sibala.Compares;
 public class NormalPointCompare
 {
     public string WinnerOutput { get; private set; }
+    public string CategoryName => "normal point";
 
     public int Compare(Player player1, Player player2)
     {
