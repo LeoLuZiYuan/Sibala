@@ -12,29 +12,34 @@ public class Game
         var category1 = GetCategroy(players[0].Dices);
         var category2 = GetCategroy(players[1].Dices);
 
-        if (category1.Type > category2.Type)
-        {
-            var winnerPlayer = players[0].Name;
-            var winnerCategory = category1.Name;
-            var winnerOutput = category1.WinnerOutput;
-            return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+        if (category1.Type != category2.Type)
+        { 
+            if (category1.Type > category2.Type)
+            {
+                var winnerPlayer = players[0].Name;
+                var winnerCategory = category1.Name;
+                var winnerOutput = category1.WinnerOutput;
+                return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+            }
+            if (category1.Type < category2.Type)
+            {
+                var winnerPlayer = players[1].Name;
+                var winnerCategory = category2.Name;
+                var winnerOutput = category2.WinnerOutput;
+                return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+            }
         }
-        if (category1.Type < category2.Type)
+        else
         {
-            var winnerPlayer = players[1].Name;
-            var winnerCategory = category2.Name;
-            var winnerOutput = category2.WinnerOutput;
-            return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
-        }
+            var normalPointCompare = new NormalPointCompare();
+            var compareResult = normalPointCompare.Compare(players[0], players[1]);
 
-        var normalPointCompare = new NormalPointCompare();
-        var compareResult = normalPointCompare.Compare(players[0], players[1]);
-
-        if (compareResult != 0)
-        {
-            var winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
-            string winnerOutput = normalPointCompare.WinnerOutput;
-            return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
+            if (compareResult != 0)
+            {
+                var winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
+                string winnerOutput = normalPointCompare.WinnerOutput;
+                return $"{winnerPlayer} win. - with normal point: {winnerOutput}";
+            }
         }
 
         return "Tie.";
