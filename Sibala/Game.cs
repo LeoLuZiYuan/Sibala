@@ -12,8 +12,7 @@ public class Game
         var category1 = GetCategroy(players[0].Dices);
         var category2 = GetCategroy(players[1].Dices);
 
-        int compareResult = 0;
-        string winnerPlayer;
+        int compareResult;
         string winnerCategory;
         string winnerOutput;
         if (category1.Type != category2.Type)
@@ -21,33 +20,27 @@ public class Game
             compareResult = category1.Type - category2.Type;
             if (category1.Type > category2.Type)
             {
-                winnerPlayer = players[0].Name;
                 winnerCategory = category1.Name;
                 winnerOutput = category1.WinnerOutput;
             }
             else
             {
-                winnerPlayer = players[1].Name;
                 winnerCategory = category2.Name;
                 winnerOutput = category2.WinnerOutput;
             }
-            // return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
         else
         {
             var normalPointCompare = new NormalPointCompare();
             compareResult = normalPointCompare.Compare(players[0], players[1]);
 
-            winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
             winnerOutput = normalPointCompare.WinnerOutput;
             winnerCategory = normalPointCompare.CategoryName;
         }
 
         if (compareResult != 0)
         {
-            // winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
-            // winnerOutput = normalPointCompare.WinnerOutput;
-            // winnerCategory = normalPointCompare.CategoryName;
+            var winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
 
