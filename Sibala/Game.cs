@@ -13,21 +13,25 @@ public class Game
         var category2 = GetCategroy(players[1].Dices);
 
         if (category1.Type != category2.Type)
-        { 
+        {
+            string winnerPlayer;
+            string winnerCategory;
+            string winnerOutput;
             if (category1.Type > category2.Type)
             {
-                var winnerPlayer = players[0].Name;
-                var winnerCategory = category1.Name;
-                var winnerOutput = category1.WinnerOutput;
-                return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+                winnerPlayer = players[0].Name;
+                winnerCategory = category1.Name;
+                winnerOutput = category1.WinnerOutput;
+                // return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
             }
-            if (category1.Type < category2.Type)
+            else
             {
-                var winnerPlayer = players[1].Name;
-                var winnerCategory = category2.Name;
-                var winnerOutput = category2.WinnerOutput;
-                return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
+                winnerPlayer = players[1].Name;
+                winnerCategory = category2.Name;
+                winnerOutput = category2.WinnerOutput;
+                // return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
             }
+            return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
         else
         {
