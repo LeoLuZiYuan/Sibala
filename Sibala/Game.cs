@@ -3,6 +3,30 @@ using Sibala.Compares;
 
 namespace Sibala;
 
+public class DifferentCategoryCompare
+{
+    public string WinnerOutput { get; set; }
+
+    public string WinnerCategory { get; set; }
+
+    public int Compare(Category category1, Category category2)
+    {
+        var compareResult = category1.Type - category2.Type;
+        if (category1.Type > category2.Type)
+        {
+            WinnerCategory = category1.Name;
+            WinnerOutput = category1.WinnerOutput;
+        }
+        else
+        {
+            WinnerCategory = category2.Name;
+            WinnerOutput = category2.WinnerOutput;
+        }
+
+        return compareResult;
+    }
+}
+
 public class Game
 {
     public string Result(string input)
@@ -17,7 +41,11 @@ public class Game
         string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            compareResult = DifferentCategoryCompare(category1, category2, out winnerCategory, out winnerOutput);
+            var differentCategoryCompare = new DifferentCategoryCompare();
+            compareResult = differentCategoryCompare.Compare(category1, category2);
+
+            winnerOutput = differentCategoryCompare.WinnerOutput;
+            winnerCategory = differentCategoryCompare.WinnerCategory;
         }
         else
         {
@@ -35,24 +63,6 @@ public class Game
         }
 
         return "Tie.";
-    }
-
-    private static int DifferentCategoryCompare(Category category1, Category category2, out string winnerCategory,
-        out string winnerOutput)
-    {
-        var compareResult = category1.Type - category2.Type;
-        if (category1.Type > category2.Type)
-        {
-            winnerCategory = category1.Name;
-            winnerOutput = category1.WinnerOutput;
-        }
-        else
-        {
-            winnerCategory = category2.Name;
-            winnerOutput = category2.WinnerOutput;
-        }
-
-        return compareResult;
     }
 
     private static Category GetCategroy(IEnumerable<Dice> Dices)
