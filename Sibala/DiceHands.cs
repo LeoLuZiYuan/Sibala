@@ -24,8 +24,7 @@ public class DiceHands : IEnumerable<Dice>
 
     public Category GetCategroy()
     {
-        var isAllOfKind = this.GroupBy(x => x.Value)
-            .Where(x => x.Count() == 4);
+        var isAllOfKind = GetAllOfAkind();
 
         if (isAllOfKind.Any())
         {
