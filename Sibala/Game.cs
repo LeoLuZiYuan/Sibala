@@ -17,17 +17,17 @@ public class Game
         string winnerOutput;
         if (diceHands1.GetCategroy().Type != diceHands2.GetCategroy().Type)
         {
-            IDiceHandsCompare differentCategoryCompare = new DifferentCategoryCompare();
-            compareResult = differentCategoryCompare.Compare(diceHands1, diceHands2);
-            winnerOutput = differentCategoryCompare.WinnerOutput;
-            winnerCategory = differentCategoryCompare.WinnerCategory;
+            IDiceHandsCompare compare = new DifferentCategoryCompare();
+            compareResult = compare.Compare(diceHands1, diceHands2);
+            winnerOutput = compare.WinnerOutput;
+            winnerCategory = compare.WinnerCategory;
         }
         else
         {
-            var normalPointCompare = new NormalPointCompare();
-            compareResult = normalPointCompare.Compare(diceHands1, diceHands2);
-            winnerOutput = normalPointCompare.WinnerOutput;
-            winnerCategory = normalPointCompare.WinnerCategory;
+            var compare = new NormalPointCompare();
+            compareResult = compare.Compare(diceHands1, diceHands2);
+            winnerOutput = compare.WinnerOutput;
+            winnerCategory = compare.WinnerCategory;
         }
 
         if (compareResult != 0)
