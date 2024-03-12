@@ -12,8 +12,8 @@ public class Game
         var diceHands1 = players[0].GetDiceHands();
         var diceHands2 = players[1].GetDiceHands();
 
-        var category1 = GetCategroy(diceHands1);
-        var category2 = GetCategroy(diceHands2);
+        var category1 = diceHands1.GetCategroy();
+        var category2 = diceHands2.GetCategroy();
 
         int compareResult;
         string winnerCategory;
@@ -40,19 +40,5 @@ public class Game
         }
 
         return "Tie.";
-    }
-
-    private static Category GetCategroy(IEnumerable<Dice> Dices)
-    {
-        var isAllOfKind = Dices
-                    .GroupBy(x => x.Value)
-                    .Where(x => x.Count() == 4);
-
-        if (isAllOfKind.Any())
-        {
-            return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
-        }
-
-        return new NormalPoint { };
     }
 }

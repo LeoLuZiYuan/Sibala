@@ -1,4 +1,5 @@
 using System.Collections;
+using Sibala.Categories;
 
 namespace Sibala;
 
@@ -19,5 +20,18 @@ public class DiceHands : IEnumerable<Dice>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    public Category GetCategroy()
+    {
+        var isAllOfKind = this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 4);
+
+        if (isAllOfKind.Any())
+        {
+            return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
+        }
+
+        return new NormalPoint { };
     }
 }
