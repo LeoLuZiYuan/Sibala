@@ -5,10 +5,10 @@ public class NormalPointCompare
     public string WinnerOutput { get; private set; }
     public string CategoryName => "normal point";
 
-    public int Compare(Player player1, Player player2)
+    public int Compare(List<Dice> player1, List<Dice> player2)
     {
-        var nomalPoint1 = player1.GetNormalPoint();
-        var nomalPoint2 = player2.GetNormalPoint();
+        var nomalPoint1 = GetNormalPoint(player1);
+        var nomalPoint2 = GetNormalPoint(player2);  
 
         var pointValue1 = nomalPoint1[0].Value + nomalPoint1[1].Value;
         var pointValue2 = nomalPoint2[0].Value + nomalPoint2[1].Value;
@@ -22,5 +22,14 @@ public class NormalPointCompare
         }
 
         return compareResult;
+    }
+
+    public List<Dice> GetNormalPoint(List<Dice> diceList)
+    {
+        return diceList
+            .GroupBy(x => x.Value)
+            .Where(x => x.Count() == 1)
+            .Select(x => x.First())
+            .OrderByDescending(x => x.Value).ToList();
     }
 }

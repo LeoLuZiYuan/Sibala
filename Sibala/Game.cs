@@ -9,8 +9,11 @@ public class Game
     {
         var players = new Parser().Parse(input);
 
-        var category1 = GetCategroy(players[0].Dices);
-        var category2 = GetCategroy(players[1].Dices);
+        var diceHands1 = players[0].GetDiceHands();
+        var diceHands2 = players[1].GetDiceHands();
+
+        var category1 = GetCategroy(diceHands1);
+        var category2 = GetCategroy(diceHands2);
 
         int compareResult;
         string winnerCategory;
@@ -19,15 +22,13 @@ public class Game
         {
             var differentCategoryCompare = new DifferentCategoryCompare();
             compareResult = differentCategoryCompare.Compare(category1, category2);
-
             winnerOutput = differentCategoryCompare.WinnerOutput;
             winnerCategory = differentCategoryCompare.WinnerCategory;
         }
         else
         {
             var normalPointCompare = new NormalPointCompare();
-            compareResult = normalPointCompare.Compare(players[0], players[1]);
-
+            compareResult = normalPointCompare.Compare(diceHands1, diceHands2);
             winnerOutput = normalPointCompare.WinnerOutput;
             winnerCategory = normalPointCompare.CategoryName;
         }
