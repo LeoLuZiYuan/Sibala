@@ -1,6 +1,6 @@
 namespace Sibala.Compares;
 
-public interface IDiceHandsCompare
+public interface IDiceHandsComparer
 {
     string WinnerOutput { get; }
     string WinnerCategory { get; }

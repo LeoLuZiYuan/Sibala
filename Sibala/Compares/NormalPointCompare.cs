@@ -1,6 +1,6 @@
 namespace Sibala.Compares;
 
-public class NormalPointCompare: IDiceHandsCompare
+public class NormalPointComparer: IDiceHandsComparer
 {
     public string WinnerOutput { get; private set; }
     public string WinnerCategory => "normal point";
