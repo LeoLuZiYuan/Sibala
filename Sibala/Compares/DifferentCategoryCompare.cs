@@ -2,7 +2,7 @@ using Sibala.Categories;
 
 namespace Sibala.Compares;
 
-public class DifferentCategoryCompare
+public class DifferentCategoryCompare : IDiceHandsCompare
 {
     public string WinnerOutput { get; set; }
 

@@ -17,7 +17,7 @@ public class Game
         string winnerOutput;
         if (diceHands1.GetCategroy().Type != diceHands2.GetCategroy().Type)
         {
-            var differentCategoryCompare = new DifferentCategoryCompare();
+            IDiceHandsCompare differentCategoryCompare = new DifferentCategoryCompare();
             compareResult = differentCategoryCompare.Compare(diceHands1, diceHands2);
             winnerOutput = differentCategoryCompare.WinnerOutput;
             winnerCategory = differentCategoryCompare.WinnerCategory;
@@ -27,7 +27,7 @@ public class Game
             var normalPointCompare = new NormalPointCompare();
             compareResult = normalPointCompare.Compare(diceHands1, diceHands2);
             winnerOutput = normalPointCompare.WinnerOutput;
-            winnerCategory = normalPointCompare.CategoryName;
+            winnerCategory = normalPointCompare.WinnerCategory;
         }
 
         if (compareResult != 0)
