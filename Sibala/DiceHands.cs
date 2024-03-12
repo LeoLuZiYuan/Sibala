@@ -31,6 +31,14 @@ public class DiceHands : IEnumerable<Dice>
             return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
         }
 
+        var isNormalPoint = GetNormalPoint();
+        if (isNormalPoint.Any())
+        {
+            var normalPoint1 = GetNormalPointValue()[0].First().Output;
+            var normalPoint2 = GetNormalPointValue()[1].First().Output;
+            return new NormalPoint { WinnerOutput = $"{normalPoint1} over {normalPoint2}" };
+        }
+
         return new NormalPoint { };
     }
 
@@ -38,5 +46,18 @@ public class DiceHands : IEnumerable<Dice>
     {
         return this.GroupBy(x => x.Value)
             .Where(x => x.Count() == 4);
+    }
+
+    public IEnumerable<IGrouping<int, Dice>> GetNormalPoint()
+    {
+        return this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
+    }
+
+    public List<IGrouping<int, Dice>> GetNormalPointValue()
+    {
+        // 5 3 5 2 = 5
+        return this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 1).ToList();
     }
 }
