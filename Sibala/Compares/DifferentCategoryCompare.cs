@@ -10,19 +10,12 @@ public class DifferentCategoryComparer : IDiceHandsComparer
 
     public int Compare(DiceHands dices1, DiceHands dices2)
     {
-        Category category1 = dices1.GetCategroy();
-        Category category2 = dices2.GetCategroy();
+        var category1 = dices1.GetCategroy();
+        var category2 = dices2.GetCategroy();
         var compareResult = category1.Type - category2.Type;
-        if (category1.Type > category2.Type)
-        {
-            WinnerCategory = category1.Name;
-            WinnerOutput = category1.WinnerOutput;
-        }
-        else
-        {
-            WinnerCategory = category2.Name;
-            WinnerOutput = category2.WinnerOutput;
-        }
+        
+        WinnerCategory = compareResult > 0 ? category1.Name : category2.Name;
+        WinnerOutput = compareResult > 0 ? category1.WinnerOutput : category2.WinnerOutput;
 
         return compareResult;
     }

@@ -15,12 +15,12 @@ public class Game
         var comparer = GetComparer(diceHands1, diceHands2);
 
         var compareResult = comparer.Compare(diceHands1, diceHands2);
-        var winnerOutput = comparer.WinnerOutput;
-        var winnerCategory = comparer.WinnerCategory;
 
         if (compareResult != 0)
         {
             var winnerPlayer = compareResult > 0 ? players[0].Name : players[1].Name;
+            var winnerOutput = comparer.WinnerOutput;
+            var winnerCategory = comparer.WinnerCategory;
             return $"{winnerPlayer} win. - with {winnerCategory}: {winnerOutput}";
         }
 
