@@ -34,4 +34,10 @@ public class DiceHands : IEnumerable<Dice>
 
         return new NormalPoint { };
     }
+
+    public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
+    {
+        return this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 4);
+    }
 }

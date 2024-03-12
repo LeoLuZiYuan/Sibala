@@ -50,11 +50,8 @@ class GameTests
     [Test]
     public void Both_All_Of_A_Kind()
     {
-        // win when both all of kind
-        // Black: 5 7 3 5  White: 2 6 2 3
-        // Black win. -with all of a kind: 10
-        ResultShouldBe("Black: 5 7 3 5  White: 2 6 2 3",
-            "Black win. - with all of a kind: 10");
+        ResultShouldBe("Black: 7 7 7 7  White: 2 2 2 2",
+            "Black win. - with all of a kind: 7");
 
     }
 

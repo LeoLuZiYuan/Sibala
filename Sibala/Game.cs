@@ -5,6 +5,12 @@ namespace Sibala;
 
 public class Game
 {
+    private static Dictionary<CategroyType, IDiceHandsComparer> _sameCategoryLookup = new Dictionary<CategroyType, IDiceHandsComparer>
+    {
+        {CategroyType.AllOfKind, new AllOfKindComparer()},
+        {CategroyType.NormalPoint, new NormalPointComparer()}
+    };
+
     public string Result(string input)
     {
         var players = new Parser().Parse(input);
@@ -29,11 +35,14 @@ public class Game
 
     private static IDiceHandsComparer GetComparer(DiceHands diceHands1, DiceHands diceHands2)
     {
-        if (diceHands1.GetCategroy().Type != diceHands2.GetCategroy().Type)
+        var categroyType1 = diceHands1.GetCategroy().Type;
+        var categroyType2 = diceHands2.GetCategroy().Type;
+
+        if (categroyType1 != categroyType2)
         {
             return new DifferentCategoryComparer();
         }
 
-        return new NormalPointComparer();
+        return _sameCategoryLookup[categroyType1];
     }
 }
