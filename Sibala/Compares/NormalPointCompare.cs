@@ -5,7 +5,7 @@ public class NormalPointCompare
     public string WinnerOutput { get; private set; }
     public string CategoryName => "normal point";
 
-    public int Compare(List<Dice> player1, List<Dice> player2)
+    public int Compare(IEnumerable<Dice> player1, IEnumerable<Dice> player2)
     {
         var nomalPoint1 = GetNormalPoint(player1);
         var nomalPoint2 = GetNormalPoint(player2);  
@@ -24,7 +24,7 @@ public class NormalPointCompare
         return compareResult;
     }
 
-    public List<Dice> GetNormalPoint(List<Dice> diceList)
+    public List<Dice> GetNormalPoint(IEnumerable<Dice> diceList)
     {
         return diceList
             .GroupBy(x => x.Value)
