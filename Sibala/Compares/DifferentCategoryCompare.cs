@@ -4,14 +4,14 @@ namespace Sibala.Compares;
 
 public class DifferentCategoryCompare : IDiceHandsCompare
 {
-    public string WinnerOutput { get; set; }
+    public string WinnerOutput { get; private set; }
 
-    public string WinnerCategory { get; set; }
+    public string WinnerCategory { get; private set; }
 
-    public int Compare(DiceHands diceHands1, DiceHands diceHands2)
+    public int Compare(DiceHands dices1, DiceHands dices2)
     {
-        Category category1 = diceHands1.GetCategroy();
-        Category category2 = diceHands2.GetCategroy();
+        Category category1 = dices1.GetCategroy();
+        Category category2 = dices2.GetCategroy();
         var compareResult = category1.Type - category2.Type;
         if (category1.Type > category2.Type)
         {
