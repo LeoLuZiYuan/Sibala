@@ -8,8 +8,10 @@ public class DifferentCategoryCompare
 
     public string WinnerCategory { get; set; }
 
-    public int Compare(Category category1, Category category2)
+    public int Compare(DiceHands diceHands1, DiceHands diceHands2)
     {
+        Category category1 = diceHands1.GetCategroy();
+        Category category2 = diceHands2.GetCategroy();
         var compareResult = category1.Type - category2.Type;
         if (category1.Type > category2.Type)
         {

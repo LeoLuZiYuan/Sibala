@@ -12,16 +12,13 @@ public class Game
         var diceHands1 = players[0].GetDiceHands();
         var diceHands2 = players[1].GetDiceHands();
 
-        var category1 = diceHands1.GetCategroy();
-        var category2 = diceHands2.GetCategroy();
-
         int compareResult;
         string winnerCategory;
         string winnerOutput;
-        if (category1.Type != category2.Type)
+        if (diceHands1.GetCategroy().Type != diceHands2.GetCategroy().Type)
         {
             var differentCategoryCompare = new DifferentCategoryCompare();
-            compareResult = differentCategoryCompare.Compare(category1, category2);
+            compareResult = differentCategoryCompare.Compare(diceHands1, diceHands2);
             winnerOutput = differentCategoryCompare.WinnerOutput;
             winnerCategory = differentCategoryCompare.WinnerCategory;
         }
