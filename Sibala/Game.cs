@@ -29,16 +29,11 @@ public class Game
 
     private static IDiceHandsComparer GetComparer(DiceHands diceHands1, DiceHands diceHands2)
     {
-        IDiceHandsComparer comparer;
         if (diceHands1.GetCategroy().Type != diceHands2.GetCategroy().Type)
         {
-            comparer = new DifferentCategoryComparer();
-        }
-        else
-        {
-            comparer = new NormalPointComparer();
+            return new DifferentCategoryComparer();
         }
 
-        return comparer;
+        return new NormalPointComparer();
     }
 }
