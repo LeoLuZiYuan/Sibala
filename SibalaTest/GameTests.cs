@@ -24,13 +24,18 @@ class GameTests
         ResultShouldBe("Black:4 1 4 6  White:3 2 5 5",
             "Black win. - with normal point: 6 over 1");
 
+        ResultShouldBe("Black: 3 6 5 5  White: 4 4 3 6",
+            "Tie.");
     }
 
     [Test]
-    public void Both_normal_Point_Tie()
+    public void Normal_Point_Win_Others()
     {
-        ResultShouldBe("Black: 3 6 5 5  White: 4 4 3 6",
-                       "Tie.");
+        // normal Point win others
+        // Black: 3 5 5 5.White: 4 1 4 2
+        // Black win. -with normal point: 3
+        ResultShouldBe("Black: 3 5 5 5  White: 4 1 4 2",
+            "Black win. - with normal point: 3");
     }
 
     [Test]
@@ -42,7 +47,7 @@ class GameTests
 
         ResultShouldBe("Black: 2 6 2 3  White: 5 5 5 5",
             "White win. - with all of a kind: 5");
-        
+
         ResultShouldBe("Black: 2 2 2 3  White: 5 5 5 5",
             "White win. - with all of a kind: 5");
     }
