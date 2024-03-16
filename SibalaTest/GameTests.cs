@@ -32,10 +32,8 @@ class GameTests
     public void Normal_Point_Win_Others()
     {
         // normal Point win others
-        // Black: 3 5 5 5.White: 4 1 4 2
-        // Black win. -with normal point: 3
         ResultShouldBe("Black: 3 5 5 5  White: 4 1 4 2",
-            "Black win. - with normal point: 3");
+            "White win. - with normal point: 3");
     }
 
     [Test]
