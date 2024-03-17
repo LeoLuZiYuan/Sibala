@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 using Sibala.Categories;
 
 namespace Sibala;
@@ -34,8 +35,8 @@ public class DiceHands : IEnumerable<Dice>
         var isNormalPoint = GetNormalPoint();
         if (isNormalPoint.Any())
         {
-            var normalPoint1 = GetNormalPointValue()[0].First().Value;
-            var normalPoint2 = GetNormalPointValue()[1].First().Value;
+            var normalPoint1 = GetNormalPointValue()[0].Value;
+            var normalPoint2 = GetNormalPointValue()[1].Value;
             return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
         }
 
@@ -55,10 +56,10 @@ public class DiceHands : IEnumerable<Dice>
         return normalPoint;
     }
 
-    public List<IGrouping<int, Dice>> GetNormalPointValue()
+    public List<Dice> GetNormalPointValue()
     {
-        // 5 3 5 2 = 5
-        return this.GroupBy(x => x.Value)
-            .Where(x => x.Count() == 1).ToList();
+        // 6 6 2 2 = 12
+        var getSmallPair = GetNormalPoint().Last().First().Value;
+        return this.Where(x => x.Value != getSmallPair).ToList();
     }
 }
