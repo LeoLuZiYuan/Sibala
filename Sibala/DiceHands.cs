@@ -56,6 +56,10 @@ public class DiceHands : IEnumerable<Dice>
         return normalPoint;
     }
 
+    /// <summary>
+    /// 取得 Normal Point 排除pair的點數
+    /// </summary>
+    /// <returns></returns>
     public List<Dice> GetNormalPointValue()
     {
         // 6 6 2 2 = 12

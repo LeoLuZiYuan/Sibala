@@ -23,10 +23,7 @@ public class NormalPointComparer : IDiceHandsComparer
         }
         else
         {
-            var exceptPair1 = dices1.Except(dices1.GetNormalPointFirstPair().First()).ToList();
-            var exceptPair2 = dices2.Except(dices2.GetNormalPointFirstPair().First()).ToList();
-
-            compareResult = CompareByValue(exceptPair1, exceptPair2);
+            compareResult = CompareByValue(normalPoint1, normalPoint2);
         }
 
         return compareResult;

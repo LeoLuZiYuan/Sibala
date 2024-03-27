@@ -34,6 +34,9 @@ class GameTests
         // special case 2 6 2 6 = 12
         ResultShouldBe("Black: 5 3 5 4  White: 2 6 2 6",
             "White win. - with normal point: 6 over 6");
+
+        ResultShouldBe("Black: 5 3 5 4  White: 2 6 2 6",
+            "White win. - with normal point: 6 over 6");
     }
 
     [Test]
@@ -63,7 +66,6 @@ class GameTests
     {
         ResultShouldBe("Black: 7 7 7 7  White: 2 2 2 2",
             "Black win. - with all of a kind: 7");
-
     }
 
 
