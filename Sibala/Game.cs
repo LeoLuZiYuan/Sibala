@@ -8,7 +8,8 @@ public class Game
     private static Dictionary<CategroyType, IDiceHandsComparer> _sameCategoryLookup = new Dictionary<CategroyType, IDiceHandsComparer>
     {
         {CategroyType.AllOfKind, new AllOfKindComparer()},
-        {CategroyType.NormalPoint, new NormalPointComparer()}
+        {CategroyType.NormalPoint, new NormalPointComparer()},
+        {CategroyType.NoPoint, new NoPointComparer()}
     };
 
     public string Result(string input)
