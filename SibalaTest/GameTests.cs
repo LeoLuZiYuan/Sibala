@@ -26,15 +26,14 @@ class GameTests
 
         ResultShouldBe("Black: 3 6 5 5  White: 4 4 3 6",
             "Tie.");
-        
+
         // decide by first point
         ResultShouldBe("Black: 3 4 5 5  White: 4 1 4 6",
-            "Black win. - with normal point: 6 over 1");
+            "White win. - with normal point: 6 over 1");
+
         // special case 2 6 2 6 = 12
         ResultShouldBe("Black: 5 3 5 4  White: 2 6 2 6",
             "White win. - with normal point: 6 over 6");
-
-
     }
 
     [Test]
