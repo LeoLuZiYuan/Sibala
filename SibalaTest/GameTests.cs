@@ -68,6 +68,12 @@ class GameTests
             "Black win. - with all of a kind: 7");
     }
 
+    [Test]
+    public void Different_Category_With_Tie()
+    {
+        ResultShouldBe("Black: 3 5 5 5  White: 4 1 3 6",
+            "Tie.");
+    }
 
 
 
