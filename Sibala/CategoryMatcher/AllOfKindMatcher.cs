@@ -2,39 +2,13 @@ using Sibala.Categories;
 
 namespace Sibala.CategoryMatcher;
 
-public class NormalPointMatcher
-{
-    public NormalPointMatcher()
-    {
-    }
-
-    public Category NextMatch(DiceHands diceHands)
-    {
-        if (IsMatchedNormalPoint(diceHands))
-        {
-            var normalPoint1 = diceHands.GetNormalPointValue()[0].Value;
-            var normalPoint2 = diceHands.GetNormalPointValue()[1].Value;
-            return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
-        }
-        else
-        {
-            return new NoPoint { };
-        }
-    }
-
-    private  bool IsMatchedNormalPoint(DiceHands diceHands)
-    {
-        return diceHands.GetNormalPointFirstPair().Any();
-    }
-}
-
 public class AllOfKindMatcher
 {
-    private readonly NormalPointMatcher _normalPointMatcher;
+    private readonly NormalPointMatcher _NextCategoryMatcher;
 
     public AllOfKindMatcher()
     {
-        _normalPointMatcher = new NormalPointMatcher();
+        _NextCategoryMatcher = new NormalPointMatcher();
     }
 
     public Category DecidedCategory(DiceHands diceHands)
@@ -45,7 +19,7 @@ public class AllOfKindMatcher
         }
         else
         {
-            return _normalPointMatcher.NextMatch(diceHands);
+            return _NextCategoryMatcher.DecidedCategory(diceHands);
         }
     }
 
