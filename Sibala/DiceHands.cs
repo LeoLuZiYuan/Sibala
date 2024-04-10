@@ -1,19 +1,18 @@
 using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 using Sibala.Categories;
-using Sibala.CategoryMatcher;
+using Sibala.CategoryMatchers;
 
 namespace Sibala;
 
 public class DiceHands : IEnumerable<Dice>
 {
     private readonly IEnumerable<Dice> _orderDices;
-    private readonly AllOfKindMatcher _allOfKindMatcher;
+    private readonly CategoryMatcher _categoryMatcher;
 
     public DiceHands(IEnumerable<Dice> orderDices)
     {
         _orderDices = orderDices;
-        _allOfKindMatcher = new AllOfKindMatcher(
+        _categoryMatcher = new AllOfKindMatcher(
                                 new NormalPointMatcher(null));
     }
 
@@ -29,7 +28,7 @@ public class DiceHands : IEnumerable<Dice>
 
     public Category GetCategory()
     {
-        return _allOfKindMatcher.DecidedCategory(this);
+        return _categoryMatcher.DecidedCategory(this);
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()

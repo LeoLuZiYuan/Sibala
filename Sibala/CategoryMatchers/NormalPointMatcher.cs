@@ -1,6 +1,6 @@
 using Sibala.Categories;
 
-namespace Sibala.CategoryMatcher;
+namespace Sibala.CategoryMatchers;
 
 public class NormalPointMatcher : CategoryMatcher
 {
