@@ -36,8 +36,8 @@ public class Game
 
     private static IDiceHandsComparer GetComparer(DiceHands diceHands1, DiceHands diceHands2)
     {
-        var categroyType1 = diceHands1.GetCategroy().Type;
-        var categroyType2 = diceHands2.GetCategroy().Type;
+        var categroyType1 = diceHands1.GetCategory().Type;
+        var categroyType2 = diceHands2.GetCategory().Type;
 
         if (categroyType1 != categroyType2)
         {

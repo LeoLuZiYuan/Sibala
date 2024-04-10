@@ -10,8 +10,8 @@ public class DifferentCategoryComparer : IDiceHandsComparer
 
     public int Compare(DiceHands dices1, DiceHands dices2)
     {
-        var category1 = dices1.GetCategroy();
-        var category2 = dices2.GetCategroy();
+        var category1 = dices1.GetCategory();
+        var category2 = dices2.GetCategory();
         var compareResult = category1.Type - category2.Type;
         
         WinnerCategory = compareResult > 0 ? category1.Name : category2.Name;

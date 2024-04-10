@@ -23,7 +23,12 @@ public class DiceHands : IEnumerable<Dice>
         return GetEnumerator();
     }
 
-    public Category GetCategroy()
+    public Category GetCategory()
+    {
+        return DecidedCategory();
+    }
+
+    private Category DecidedCategory()
     {
         if (IsMatchedAllOfKind(this))
         {
