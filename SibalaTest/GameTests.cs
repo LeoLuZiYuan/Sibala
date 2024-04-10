@@ -66,6 +66,9 @@ class GameTests
     {
         ResultShouldBe("Black: 7 7 7 7  White: 2 2 2 2",
             "Black win. - with all of a kind: 7");
+
+        ResultShouldBe("Black: 3 3 3 3  White: 3 3 3 3",
+            "Tie.");
     }
 
     [Test]
