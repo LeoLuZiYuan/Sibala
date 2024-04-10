@@ -15,7 +15,7 @@ public class AllOfKindMatcher
 
     public Category DecidedCategory()
     {
-        if (IsMatchedAllOfKind(_diceHands))
+        if (IsMatched(_diceHands))
         {
             return new AllOfAKind { WinnerOutput = _diceHands.GetAllOfAkind().First().First().Output };
         }
@@ -44,7 +44,7 @@ public class AllOfKindMatcher
         return diceHands.GetNormalPointFirstPair().Any();
     }
 
-    private static bool IsMatchedAllOfKind(DiceHands diceHands)
+    private static bool IsMatched(DiceHands diceHands)
     {
         return diceHands.GetAllOfAkind().Any();
     }
@@ -61,11 +61,6 @@ public class DiceHands : IEnumerable<Dice>
         _allOfKindMatcher = new AllOfKindMatcher(this);
     }
 
-    public AllOfKindMatcher AllOfKindMatcher
-    {
-        get { return _allOfKindMatcher; }
-    }
-
     public IEnumerator<Dice> GetEnumerator()
     {
         return _orderDices.GetEnumerator();
@@ -78,7 +73,7 @@ public class DiceHands : IEnumerable<Dice>
 
     public Category GetCategory()
     {
-        return AllOfKindMatcher.DecidedCategory();
+        return _allOfKindMatcher.DecidedCategory();
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
