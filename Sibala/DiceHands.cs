@@ -27,14 +27,14 @@ public class DiceHands : IEnumerable<Dice>
     {
         var isAllOfKind = GetAllOfAkind();
 
-        if (isAllOfKind.Any())
+        if (IsMatchedAllOfKind(isAllOfKind))
         {
             return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
         }
         else
         {
             var isNormalPoint = GetNormalPointFirstPair();
-            if (isNormalPoint.Any())
+            if (IsMatchedNormalPoint(isNormalPoint))
             {
                 var normalPoint1 = GetNormalPointValue()[0].Value;
                 var normalPoint2 = GetNormalPointValue()[1].Value;
@@ -45,6 +45,16 @@ public class DiceHands : IEnumerable<Dice>
                 return new NoPoint { };
             }
         }
+    }
+
+    private static bool IsMatchedNormalPoint(IEnumerable<IGrouping<int, Dice>> isNormalPoint)
+    {
+        return isNormalPoint.Any();
+    }
+
+    private static bool IsMatchedAllOfKind(IEnumerable<IGrouping<int, Dice>> isAllOfKind)
+    {
+        return isAllOfKind.Any();
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
