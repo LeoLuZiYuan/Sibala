@@ -31,16 +31,21 @@ public class DiceHands : IEnumerable<Dice>
         }
         else
         {
-            if (IsMatchedNormalPoint(this))
-            {
-                var normalPoint1 = GetNormalPointValue()[0].Value;
-                var normalPoint2 = GetNormalPointValue()[1].Value;
-                return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
-            }
-            else
-            {
-                return new NoPoint { };
-            }
+            return NextMatch();
+        }
+    }
+
+    private Category NextMatch()
+    {
+        if (IsMatchedNormalPoint(this))
+        {
+            var normalPoint1 = GetNormalPointValue()[0].Value;
+            var normalPoint2 = GetNormalPointValue()[1].Value;
+            return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
+        }
+        else
+        {
+            return new NoPoint { };
         }
     }
 
