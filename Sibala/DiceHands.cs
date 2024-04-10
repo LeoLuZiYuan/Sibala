@@ -13,7 +13,7 @@ public class DiceHands : IEnumerable<Dice>
     public DiceHands(IEnumerable<Dice> orderDices)
     {
         _orderDices = orderDices;
-        _allOfKindMatcher = new AllOfKindMatcher();
+        _allOfKindMatcher = new AllOfKindMatcher(new NormalPointMatcher());
     }
 
     public IEnumerator<Dice> GetEnumerator()

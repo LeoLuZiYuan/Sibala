@@ -6,9 +6,9 @@ public class AllOfKindMatcher
 {
     private readonly NormalPointMatcher _NextCategoryMatcher;
 
-    public AllOfKindMatcher()
+    public AllOfKindMatcher(NormalPointMatcher nextCategoryMatcher)
     {
-        _NextCategoryMatcher = new NormalPointMatcher();
+        _NextCategoryMatcher = nextCategoryMatcher;
     }
 
     public Category DecidedCategory(DiceHands diceHands)
