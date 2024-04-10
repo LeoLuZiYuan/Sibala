@@ -2,33 +2,18 @@ using Sibala.Categories;
 
 namespace Sibala.CategoryMatcher;
 
-public class AllOfKindMatcher
+public class AllOfKindMatcher : CategoryMatcher
 {
-    private readonly NormalPointMatcher _NextCategoryMatcher;
-
-    public AllOfKindMatcher(NormalPointMatcher nextCategoryMatcher)
+    public AllOfKindMatcher(NormalPointMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
     {
-        _NextCategoryMatcher = nextCategoryMatcher;
     }
 
-    public Category DecidedCategory(DiceHands diceHands)
-    {
-        if (IsMatched(diceHands))
-        {
-            return GetMatchedCategory(diceHands);
-        }
-        else
-        {
-            return _NextCategoryMatcher.DecidedCategory(diceHands);
-        }
-    }
-
-    private  Category GetMatchedCategory(DiceHands diceHands)
+    protected override Category GetMatchedCategory(DiceHands diceHands)
     {
         return new AllOfAKind { WinnerOutput = diceHands.GetAllOfAkind().First().First().Output };
     }
 
-    private  bool IsMatched(DiceHands diceHands)
+    protected override bool IsMatched(DiceHands diceHands)
     {
         return diceHands.GetAllOfAkind().Any();
     }
