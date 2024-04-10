@@ -6,22 +6,19 @@ namespace Sibala;
 
 public class AllOfKindMatcher
 {
-    private DiceHands _diceHands;
-
-    public AllOfKindMatcher(DiceHands diceHands)
+    public AllOfKindMatcher()
     {
-        _diceHands = diceHands;
     }
 
-    public Category DecidedCategory()
+    public Category DecidedCategory(DiceHands diceHands)
     {
-        if (IsMatched(_diceHands))
+        if (IsMatched(diceHands))
         {
-            return new AllOfAKind { WinnerOutput = _diceHands.GetAllOfAkind().First().First().Output };
+            return new AllOfAKind { WinnerOutput = diceHands.GetAllOfAkind().First().First().Output };
         }
         else
         {
-            return NextMatch(_diceHands);
+            return NextMatch(diceHands);
         }
     }
 
@@ -58,7 +55,7 @@ public class DiceHands : IEnumerable<Dice>
     public DiceHands(IEnumerable<Dice> orderDices)
     {
         _orderDices = orderDices;
-        _allOfKindMatcher = new AllOfKindMatcher(this);
+        _allOfKindMatcher = new AllOfKindMatcher();
     }
 
     public IEnumerator<Dice> GetEnumerator()
@@ -73,7 +70,7 @@ public class DiceHands : IEnumerable<Dice>
 
     public Category GetCategory()
     {
-        return _allOfKindMatcher.DecidedCategory();
+        return _allOfKindMatcher.DecidedCategory(this);
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
