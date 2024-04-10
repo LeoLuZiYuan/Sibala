@@ -2,35 +2,13 @@ using Sibala.Categories;
 
 namespace Sibala.CategoryMatcher;
 
-public class AllOfKindMatcher
+public class NormalPointMatcher
 {
-    public AllOfKindMatcher()
+    public NormalPointMatcher()
     {
     }
 
-    public Category DecidedCategory(DiceHands diceHands)
-    {
-        if (IsMatched(diceHands))
-        {
-            return GetMatchedCategory(diceHands);
-        }
-        else
-        {
-            return NextMatch(diceHands);
-        }
-    }
-
-    private static Category GetMatchedCategory(DiceHands diceHands)
-    {
-        return new AllOfAKind { WinnerOutput = diceHands.GetAllOfAkind().First().First().Output };
-    }
-
-    private static bool IsMatched(DiceHands diceHands)
-    {
-        return diceHands.GetAllOfAkind().Any();
-    }
-
-    private Category NextMatch(DiceHands diceHands)
+    public Category NextMatch(DiceHands diceHands)
     {
         if (IsMatchedNormalPoint(diceHands))
         {
@@ -44,8 +22,40 @@ public class AllOfKindMatcher
         }
     }
 
-    private static bool IsMatchedNormalPoint(DiceHands diceHands)
+    private  bool IsMatchedNormalPoint(DiceHands diceHands)
     {
         return diceHands.GetNormalPointFirstPair().Any();
+    }
+}
+
+public class AllOfKindMatcher
+{
+    private readonly NormalPointMatcher _normalPointMatcher;
+
+    public AllOfKindMatcher()
+    {
+        _normalPointMatcher = new NormalPointMatcher();
+    }
+
+    public Category DecidedCategory(DiceHands diceHands)
+    {
+        if (IsMatched(diceHands))
+        {
+            return GetMatchedCategory(diceHands);
+        }
+        else
+        {
+            return _normalPointMatcher.NextMatch(diceHands);
+        }
+    }
+
+    private  Category GetMatchedCategory(DiceHands diceHands)
+    {
+        return new AllOfAKind { WinnerOutput = diceHands.GetAllOfAkind().First().First().Output };
+    }
+
+    private  bool IsMatched(DiceHands diceHands)
+    {
+        return diceHands.GetAllOfAkind().Any();
     }
 }
