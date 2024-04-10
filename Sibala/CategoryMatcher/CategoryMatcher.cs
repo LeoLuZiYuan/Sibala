@@ -19,7 +19,9 @@ public abstract class CategoryMatcher
         }
         else
         {
-            return _NextCategoryMatcher.DecidedCategory(diceHands);
+            return _NextCategoryMatcher != null
+                ? _NextCategoryMatcher.DecidedCategory(diceHands)
+                : new NoPoint { };
         }
     }
 
