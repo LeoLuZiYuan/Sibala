@@ -4,48 +4,33 @@ using Sibala.Categories;
 
 namespace Sibala;
 
-public class DiceHands : IEnumerable<Dice>
+public class AllOfKindMatcher
 {
-    private readonly IEnumerable<Dice> _orderDices;
+    private DiceHands _diceHands;
 
-    public DiceHands(IEnumerable<Dice> orderDices)
+    public AllOfKindMatcher(DiceHands diceHands)
     {
-        _orderDices = orderDices;
+        _diceHands = diceHands;
     }
 
-    public IEnumerator<Dice> GetEnumerator()
+    public Category DecidedCategory()
     {
-        return _orderDices.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public Category GetCategory()
-    {
-        return DecidedCategory();
-    }
-
-    private Category DecidedCategory()
-    {
-        if (IsMatchedAllOfKind(this))
+        if (IsMatchedAllOfKind(_diceHands))
         {
-            return new AllOfAKind { WinnerOutput = GetAllOfAkind().First().First().Output };
+            return new AllOfAKind { WinnerOutput = _diceHands.GetAllOfAkind().First().First().Output };
         }
         else
         {
-            return NextMatch();
+            return NextMatch(_diceHands);
         }
     }
 
-    private Category NextMatch()
+    private Category NextMatch(DiceHands diceHands)
     {
-        if (IsMatchedNormalPoint(this))
+        if (IsMatchedNormalPoint(diceHands))
         {
-            var normalPoint1 = GetNormalPointValue()[0].Value;
-            var normalPoint2 = GetNormalPointValue()[1].Value;
+            var normalPoint1 = diceHands.GetNormalPointValue()[0].Value;
+            var normalPoint2 = diceHands.GetNormalPointValue()[1].Value;
             return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
         }
         else
@@ -62,6 +47,38 @@ public class DiceHands : IEnumerable<Dice>
     private static bool IsMatchedAllOfKind(DiceHands diceHands)
     {
         return diceHands.GetAllOfAkind().Any();
+    }
+}
+
+public class DiceHands : IEnumerable<Dice>
+{
+    private readonly IEnumerable<Dice> _orderDices;
+    private readonly AllOfKindMatcher _allOfKindMatcher;
+
+    public DiceHands(IEnumerable<Dice> orderDices)
+    {
+        _orderDices = orderDices;
+        _allOfKindMatcher = new AllOfKindMatcher(this);
+    }
+
+    public AllOfKindMatcher AllOfKindMatcher
+    {
+        get { return _allOfKindMatcher; }
+    }
+
+    public IEnumerator<Dice> GetEnumerator()
+    {
+        return _orderDices.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public Category GetCategory()
+    {
+        return AllOfKindMatcher.DecidedCategory();
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
