@@ -1,51 +1,9 @@
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 using Sibala.Categories;
+using Sibala.CategoryMatcher;
 
 namespace Sibala;
-
-public class AllOfKindMatcher
-{
-    public AllOfKindMatcher()
-    {
-    }
-
-    public Category DecidedCategory(DiceHands diceHands)
-    {
-        if (IsMatched(diceHands))
-        {
-            return new AllOfAKind { WinnerOutput = diceHands.GetAllOfAkind().First().First().Output };
-        }
-        else
-        {
-            return NextMatch(diceHands);
-        }
-    }
-
-    private Category NextMatch(DiceHands diceHands)
-    {
-        if (IsMatchedNormalPoint(diceHands))
-        {
-            var normalPoint1 = diceHands.GetNormalPointValue()[0].Value;
-            var normalPoint2 = diceHands.GetNormalPointValue()[1].Value;
-            return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
-        }
-        else
-        {
-            return new NoPoint { };
-        }
-    }
-
-    private static bool IsMatchedNormalPoint(DiceHands diceHands)
-    {
-        return diceHands.GetNormalPointFirstPair().Any();
-    }
-
-    private static bool IsMatched(DiceHands diceHands)
-    {
-        return diceHands.GetAllOfAkind().Any();
-    }
-}
 
 public class DiceHands : IEnumerable<Dice>
 {
