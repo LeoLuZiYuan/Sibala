@@ -4,7 +4,7 @@ namespace Sibala.CategoryMatcher;
 
 public class AllOfKindMatcher : CategoryMatcher
 {
-    public AllOfKindMatcher(NormalPointMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
+    public AllOfKindMatcher(CategoryMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
     {
     }
 

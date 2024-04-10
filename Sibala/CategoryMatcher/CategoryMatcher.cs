@@ -4,11 +4,11 @@ namespace Sibala.CategoryMatcher;
 
 public abstract class CategoryMatcher
 {
-    private NormalPointMatcher _NextCategoryMatcher;
+    private readonly CategoryMatcher _nextCategoryMatcher;
 
-    protected CategoryMatcher(NormalPointMatcher nextCategoryMatcher)
+    protected CategoryMatcher(CategoryMatcher nextCategoryMatcher)
     {
-        _NextCategoryMatcher = nextCategoryMatcher;
+        _nextCategoryMatcher = nextCategoryMatcher;
     }
 
     public Category DecidedCategory(DiceHands diceHands)
@@ -19,8 +19,8 @@ public abstract class CategoryMatcher
         }
         else
         {
-            return _NextCategoryMatcher != null
-                ? _NextCategoryMatcher.DecidedCategory(diceHands)
+            return _nextCategoryMatcher != null
+                ? _nextCategoryMatcher.DecidedCategory(diceHands)
                 : new NoPoint { };
         }
     }

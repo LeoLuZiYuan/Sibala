@@ -4,21 +4,9 @@ namespace Sibala.CategoryMatcher;
 
 public class NormalPointMatcher : CategoryMatcher
 {
-    public NormalPointMatcher(NormalPointMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
+    public NormalPointMatcher(CategoryMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
     {
     }
-
-    // public Category DecidedCategory(DiceHands diceHands)
-    // {
-    //     if (IsMatched(diceHands))
-    //     {
-    //         return GetMatchedCategory(diceHands);
-    //     }
-    //     else
-    //     {
-    //         return new NoPoint { };
-    //     }
-    // }
 
     protected override Category GetMatchedCategory(DiceHands diceHands)
     {
