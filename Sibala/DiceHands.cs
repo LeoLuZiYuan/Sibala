@@ -31,16 +31,20 @@ public class DiceHands : IEnumerable<Dice>
         {
             return new AllOfAKind { WinnerOutput = isAllOfKind.First().First().Output };
         }
-
-        var isNormalPoint = GetNormalPointFirstPair();
-        if (isNormalPoint.Any())
+        else
         {
-            var normalPoint1 = GetNormalPointValue()[0].Value;
-            var normalPoint2 = GetNormalPointValue()[1].Value;
-            return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
+            var isNormalPoint = GetNormalPointFirstPair();
+            if (isNormalPoint.Any())
+            {
+                var normalPoint1 = GetNormalPointValue()[0].Value;
+                var normalPoint2 = GetNormalPointValue()[1].Value;
+                return new NormalPoint { WinnerOutput = $"{normalPoint1 + normalPoint2}" };
+            }
+            else
+            {
+                return new NoPoint { };
+            }
         }
-
-        return new NoPoint { };
     }
 
     public IEnumerable<IGrouping<int, Dice>> GetAllOfAkind()
